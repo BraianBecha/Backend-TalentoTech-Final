@@ -19,16 +19,17 @@ public class ProductoService implements ProductoServiceInterf {
 		this.repo = repo; 	}
 	
 	public List<Producto> listarTodos() { 
-		System.out.println("llamada a listarTodos()");
-		System.out.println(repo.findAll());
 		return repo.findAll(); 		
 		} 
 	
 	public Producto obtenerPorId(int idproducto) { 
 		return repo.findById(idproducto).orElse(null); 
 		} 
-	public Producto guardar(Producto p) { 
-		
+	public Producto guardar(Producto p) { 		
 		return repo.save(p); 
 		}
+	public void eliminarProducto(int idproducto) {
+	repo.deleteById(idproducto);	
+	
 	}
+}
