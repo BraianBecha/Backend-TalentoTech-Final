@@ -8,6 +8,7 @@ import com.api_techlab.proyecto.repository.ProductoRepository;
 
 //import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductoService implements ProductoServiceInterf {
@@ -22,8 +23,8 @@ public class ProductoService implements ProductoServiceInterf {
 		return repo.findAll(); 		
 		} 
 	
-	public Producto obtenerPorId(int idproducto) { 
-		return repo.findById(idproducto).orElse(null); 
+	public Optional<Producto> obtenerPorId(int idproducto) { 
+		return Optional.ofNullable(repo.findById(idproducto).orElse(null)); 
 		} 
 	public Producto guardar(Producto p) { 		
 		return repo.save(p); 
@@ -32,4 +33,9 @@ public class ProductoService implements ProductoServiceInterf {
 	repo.deleteById(idproducto);	
 	
 	}
+	public Producto actualizarProducto(Producto prod, int id) {
+		prod.setId(id);
+		return repo.save(prod);
+				}
+	
 }
